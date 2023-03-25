@@ -1,0 +1,12 @@
+---
+- name: Install and configure Docker on Ubuntu
+  hosts: all
+  become: yes
+  tasks:
+  - name: Run container
+    docker_container:
+      name: go-restro
+      image: pranav18vk/go-restro:latest
+      ports:
+        - "8000:8000"
+      state: started
