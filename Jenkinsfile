@@ -18,12 +18,11 @@ pipeline {
       steps {
         script {
           withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_HUB_CREDENTIALS_USR', passwordVariable: 'DOCKER_HUB_CREDENTIALS_PSW')]) {
-            sh "docker login -u ${DOCKER_HUB_CREDENTIALS_USR} -p ${DOCKER_HUB_CREDENTIALS_PSW} ${DOCKER_REGISTRY_URL}"
+            sh "echo ${DOCKER_HUB_CREDENTIALS_PSW} | docker login -u ${DOCKER_HUB_CREDENTIALS_USR} --password-stdin ${DOCKER_REGISTRY_URL}"
             sh "docker push ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
           }
         }
       }
     }
-
   }
 }
