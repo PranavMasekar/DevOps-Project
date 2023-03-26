@@ -26,7 +26,8 @@ pipeline {
     // }
     stage('Ansible'){
       steps {
-        sh 'ansible-playbook -i terraform/hosts Ansible/create.yml'
+        sh 'ls -a'
+        sh 'ansible-playbook -i DevOps-Project-1/terraform/hosts Ansible/create.yml'
       }
     }
   }
