@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment {
     DOCKER_HUB_CREDENTIALS = credentials('docker-hub')
-    DOCKER_IMAGE_NAME = 'go-restro'
+    DOCKER_IMAGE_NAME = 'pranav18vk/go-restro'
     DOCKER_IMAGE_TAG = "latest"
     DOCKER_REGISTRY_URL = 'https://index.docker.io/v1/'
   }
