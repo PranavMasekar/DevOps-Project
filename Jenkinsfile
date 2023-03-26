@@ -27,6 +27,7 @@ pipeline {
     stage('Ansible'){
       steps {
         withCredentials([sshUserPrivateKey(credentialsId: 'ansible-ssh-key', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
+          sh 'echo "${SSH_PRIVATE_KEY}"'
           sh 'ansible-playbook -i terraform/hosts --private-key ${SSH_PRIVATE_KEY} Ansible/create.yml'
         }
       }
