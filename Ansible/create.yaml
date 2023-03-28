@@ -1,25 +1,23 @@
----
 - name: Install and configure Docker on Ubuntu
   hosts: all
   become: yes
   tasks:
-  
-  - name: Install Docker if not installed
-    hosts: all
-    become: true
-    tasks:
-    - name: Check if Docker is installed
-      stat:
-        path: /usr/bin/docker
-      register: docker_installed
-    - name: Install Docker
-      include_playbook: docker.yaml
-      when: docker_installed.stat.exists == False
+    - name: Install Docker if not installed
+      hosts: all
+      become: true
+      tasks:
+        - name: Check if Docker is installed
+          stat:
+            path: /usr/bin/docker
+          register: docker_installed
+        - name: Install Docker
+          include_playbook: docker.yaml
+          when: docker_installed.stat.exists == False
 
-  - name: Run container
-    docker_container:
-      name: go-restro-container
-      image: pranav18vk/go-restro:latest
-      ports:
-        - "8000:8000"
-      state: started
+    - name: Run container
+      docker_container:
+        name: go-restro-container
+        image: pranav18vk/go-restro:latest
+        ports:
+          - "8000:8000"
+        state: started
