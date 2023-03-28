@@ -1,0 +1,15 @@
+---
+- name: Check if Docker container is running
+  hosts: docker
+  gather_facts: false
+  tasks:
+    - name: Check if container is running
+      docker_container_info:
+        name: go-restro-container
+      register: container_info
+    - name: Run playbook to create container if it's not running
+      include_playbook: create.yaml
+      when: container_info is failed
+    - name: Run playbook to update container if it's running
+      include_playbook: update.yaml
+      when: container_info is success

@@ -5,7 +5,7 @@
   tasks:
   - name: Run container
     docker_container:
-      name: go-restro
+      name: go-restro-container
       image: pranav18vk/go-restro:latest
       ports:
         - "8000:8000"
