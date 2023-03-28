@@ -8,7 +8,8 @@
       register: docker_installed
       
     - name: Install Docker
-      include_playbook: docker.yaml
+      include_playbook:
+        playbook: docker.yaml
       when: docker_installed.stat.exists == False
 
     - name: Run container
