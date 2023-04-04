@@ -1,18 +1,13 @@
----
-- name: Update Docker image
-  hosts: all
-  become: yes
-  tasks:
-    - name: Pull latest image
-      shell: docker pull pranav18vk/go-restro:latest
+  - name: Pull latest image
+    shell: docker pull pranav18vk/go-restro:latest
 
-    - name: Stop and remove the current container
-      shell: docker stop go-restro && docker rm go-restro
-
-    - name: Start container
-      docker_container:
-        name: go-restro-container
-        image: pranav18vk/go-restro:latest
-        ports:
-          - "8000:8000"
-        state: started
+  - name: Stop and remove the current container
+    shell: docker stop go-restro-container && docker rm go-restro-container
+    
+  - name: Start container
+    docker_container:
+      name: go-restro-container
+      image: pranav18vk/go-restro:latest
+      ports:
+        - "8000:8000"
+      state: started

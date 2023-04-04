@@ -1,19 +1,25 @@
----
-- name: Check if Docker container is running
-  hosts: docker
-  gather_facts: false
+- name: Logic
+  hosts: all
+  become: true
   tasks:
+  
+    - name: Check if Docker is installed
+      stat:
+          path: /usr/bin/docker
+      register: docker_installed
+      
+    - name: Install Docker
+      include_tasks: docker.yaml
+      when: docker_installed.stat.exists == False
+
     - name: Check if container is running
       docker_container_info:
         name: go-restro-container
       register: container_info
 
-    - name: Run playbook to create container if it's not running
-      include_playbook:
-        playbook: create.yaml
-      when: container_info is failed
+    - include_tasks: update.yaml
+      when: container_info.exists
 
-    - name: Run playbook to update container if it's running
-      include_playbook:
-        playbook: update.yaml
-      when: container_info is success
+    - name: Run playbook to create container if it's not running
+      include_tasks: create.yaml
+      when: not container_info.exists
