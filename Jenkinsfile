@@ -26,7 +26,6 @@ pipeline {
     // }
     stage('Ansible'){
       steps {
-        sh 'ls -a'
         sh 'ansible-playbook -i terraform/hosts Ansible/logic.yaml'
       }
     }
