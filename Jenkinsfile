@@ -26,12 +26,12 @@ pipeline {
     // }
     stage('Ansible Ping'){
       steps {
-        sh 'ansible all -m ping -v'
+        sh 'ansible -i terraform/hosts all -m ping -v'
       }
     }
     stage('Ansible'){
       steps {
-        sh 'sudo ansible-playbook -i terraform/hosts Ansible/logic.yaml'
+        sh 'ansible-playbook -i terraform/hosts Ansible/logic.yaml'
       }
     }
   }
