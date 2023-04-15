@@ -24,6 +24,11 @@ pipeline {
     //     }
     //   }
     // }
+    stage('Ansible Ping'){
+      steps {
+        sh 'ansible all -m ping -v'
+      }
+    }
     stage('Ansible'){
       steps {
         sh 'ansible-playbook -i terraform/hosts Ansible/logic.yaml'
