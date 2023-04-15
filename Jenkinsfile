@@ -31,8 +31,17 @@ pipeline {
     }
     stage('Ansible'){
       steps {
-        sh 'ansible-playbook -i terraform/hosts Ansible/logic.yaml'
+        sh 'sudo ansible-playbook -i terraform/hosts Ansible/logic.yaml'
       }
     }
   }
 }
+/*
+65.2.29.137 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+*/
