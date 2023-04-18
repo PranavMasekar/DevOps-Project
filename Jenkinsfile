@@ -26,12 +26,12 @@ pipeline {
     // }
     stage('Ansible Ping'){
       steps {
-        sh 'ansible -i terraform/hosts all -m ping -v --private-key=/home/ubuntu/.ssh/id_rsa'
+        sh 'ansible -i terraform/hosts all -m ping -v'
       }
     }
     stage('Ansible'){
       steps {
-        sh 'ansible-playbook -i terraform/hosts Ansible/logic.yaml --private-key=/home/ubuntu/.ssh/id_rsa'
+        sh 'ansible-playbook -i terraform/hosts Ansible/logic.yaml'
       }
     }
   }
