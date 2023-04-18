@@ -9,5 +9,3 @@
 
 ### Run following command to give access to jenkins
     sudo chown -R jenkins:jenkins /home/ubuntu/.ssh
-
-
