@@ -26,7 +26,7 @@ pipeline {
     // }
     stage('Ansible Ping'){
       steps {
-        sh 'ansible -i terraform/hosts all -m ping -v'
+        sh 'ansible -i terraform/hosts all -m ping -vvv'
       }
     }
     stage('Ansible'){
