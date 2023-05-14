@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: go-restro-nodeport
+  name: go-restro-service
 spec:
-  type: NodePort
+  type: {{ .Values.service.type }}
   selector:
-    app: go-restro
+    app: go-restro-{{ .Values.env }}
   ports:
   - name: http
     port: 8000

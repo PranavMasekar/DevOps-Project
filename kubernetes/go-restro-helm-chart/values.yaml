@@ -1,5 +1,7 @@
 env: prod
-app:
+deployment:
   replicas: 2
   containerName: go-restro
   version: v3.0.0
+service: 
+  type: NodePort

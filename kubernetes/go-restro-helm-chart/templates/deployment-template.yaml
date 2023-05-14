@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: go-restro-{{ .Values.env }}-deployment
 spec:
-  replicas: {{ .Values.app.replicas }}
+  replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels:
       app: go-restro-{{ .Values.env }}
@@ -13,7 +13,7 @@ spec:
         app: go-restro-{{ .Values.env }}
     spec:
       containers:
-      - name: {{ .Values.app.containerName }}-{{ .Values.env }}
-        image: pranav18vk/go-restro:{{ .Values.app.version }}{{ if eq .Values.env "dev" }}-dev{{ end }}
+      - name: {{ .Values.deployment.containerName }}-{{ .Values.env }}
+        image: pranav18vk/go-restro:{{ .Values.deployment.version }}{{ if eq .Values.env "dev" }}-dev{{ end }}
         ports:
             - containerPort: 8000
