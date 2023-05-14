@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-restro-{{ .Values.env }}-deployment
+spec:
+  replicas: {{ .Values.app.replicas }}
+  selector:
+    matchLabels:
+      app: go-restro-{{ .Values.env }}
+  template:
+    metadata:
+      labels:
+        app: go-restro-{{ .Values.env }}
+    spec:
+      containers:
+      - name: {{ .Values.app.containerName }}-{{ .Values.env }}
+        image: pranav18vk/go-restro:{{ .Values.app.version }}{{ if eq .Values.env "dev" }}-dev{{ end }}
+        ports:
+            - containerPort: 8000
